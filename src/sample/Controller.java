@@ -4,11 +4,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class Controller {
     @FXML
     TextArea textfelt;
     double firstnumber = 0;
     int operator = -1;
+    String operatortemp;
     public void numberchange(int number) {
         switch (number) {
             case 1: textfelt.appendText( "1");break;
@@ -63,21 +67,39 @@ public class Controller {
         switch (operator){
             case 1:
                 facit = firstnumber+Double.parseDouble(textfelt.getText());
+                operatortemp = "+";
                 break;
             case 2:
                 facit = firstnumber-Double.parseDouble(textfelt.getText());
+                operatortemp = "-";
                 break;
             case 3:
                 facit = firstnumber*Double.parseDouble(textfelt.getText());
+                operatortemp = "*";
                 break;
             case 4:
                 facit = firstnumber/Double.parseDouble(textfelt.getText());
+                operatortemp = "/";
                 break;
             default:
                 System.out.println("ERROR");
+        }
+        try {
+            save(facit);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("ERROR");
         }
         textfelt.clear();
         textfelt.appendText(Double.toString(facit));
     }
     public void clear(){textfelt.clear();}
+    public void save(double facit) throws FileNotFoundException {
+        java.io.File file = new java.io.File("log.txt");
+        // Create a file
+        java.io.PrintWriter output = new java.io.PrintWriter(file);
+        output.println(firstnumber + " " + operatortemp  + Double.parseDouble(textfelt.getText()) + " = " + facit);
+        output.print("1"+"<br/>");
+        output.close();
+    }
 }
