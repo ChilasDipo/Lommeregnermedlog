@@ -2,7 +2,9 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import java.io.FileNotFoundException;
+
+import java.io.*;
+
 public class Controller {
     @FXML
     TextArea textfelt;
@@ -90,7 +92,7 @@ public class Controller {
         }
         try {
             save(facit);
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             System.out.println("ERROR");
         }
@@ -99,12 +101,14 @@ public class Controller {
         svar = true;
     }
     public void clear(){textfelt.clear();}
-    public void save(double facit) throws FileNotFoundException {
-        java.io.File file = new java.io.File("log.txt");
+    public void save(double facit) throws IOException {
+        FileWriter fw = new FileWriter("log.txt", true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter output = new PrintWriter(bw);
+       // java.io.File file = new java.io.File("log.txt");
         // Create a file
-        java.io.PrintWriter output = new java.io.PrintWriter(file);
+        //java.io.PrintWriter output = new java.io.PrintWriter(file);
         output.println(firstnumber + " " + operatortemp  + Double.parseDouble(textfelt.getText()) + " = " + facit);
-        output.print("1"+"<br/>");
         output.close();
     }
 }
