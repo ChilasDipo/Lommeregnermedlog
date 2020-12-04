@@ -1,19 +1,23 @@
 package sample;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-
-import java.io.File;
 import java.io.FileNotFoundException;
-
 public class Controller {
     @FXML
     TextArea textfelt;
     double firstnumber = 0;
     int operator = -1;
     String operatortemp;
+    boolean svar = false;
+    public void checkTrue(){
+        if (svar==true){
+            textfelt.clear();
+            svar = false;
+        }
+    }
     public void numberchange(int number) {
+        checkTrue();
         switch (number) {
             case 1: textfelt.appendText( "1");break;
             case 2: textfelt.appendText( "2");break;
@@ -92,6 +96,7 @@ public class Controller {
         }
         textfelt.clear();
         textfelt.appendText(Double.toString(facit));
+        svar = true;
     }
     public void clear(){textfelt.clear();}
     public void save(double facit) throws FileNotFoundException {
