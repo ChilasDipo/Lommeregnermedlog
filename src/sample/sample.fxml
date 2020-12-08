@@ -40,6 +40,7 @@
       <Button mnemonicParsing="false" onAction="#buttongange" text="*" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <Button mnemonicParsing="false" onAction="#clear" text="Clear" GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <TextArea fx:id="textfelt" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" />
+      <Button mnemonicParsing="false" onAction="#clearlog" text="ClearLog" GridPane.columnIndex="3" GridPane.rowIndex="5" />
    </children>
    <padding>
       <Insets left="10.0" />

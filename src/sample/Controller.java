@@ -2,7 +2,6 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-
 import java.io.*;
 
 public class Controller {
@@ -111,4 +110,11 @@ public class Controller {
         output.println(firstnumber + " " + operatortemp  + Double.parseDouble(textfelt.getText()) + " = " + facit);
         output.close();
     }
+    public void clearlog() throws IOException {
+        PrintWriter writer = new PrintWriter("log.txt");
+        writer.print("");
+        writer.close();
+
+    }
+
 }
